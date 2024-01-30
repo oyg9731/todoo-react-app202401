@@ -7,8 +7,8 @@ import {
 import {AUTH_URL} from "../../config/host-config";
 import {useNavigate} from "react-router-dom";
 
-import "./Join.scss"
-import anonymous from '../../assets/img/anonymous.jpg';
+import './Join.scss';
+import anonymous from '../../assets/img/image-add.png';
 
 const Join = () => {
 
@@ -110,7 +110,7 @@ const Join = () => {
         }
         setUserValue({...userValue, email: email});
         setMessage({...message, email: msg});
-        setCorrect({...correct, email: flag});
+        setCorrect({...correct, email: flag });
 
 
     };
@@ -205,9 +205,9 @@ const Join = () => {
 
         // JSON데이터를 formData에 넣기 위한 작업
         const jsonBlob = new Blob(
-            [JSON.stringify(userValue)],
-            {type : 'application/json'}
-        )
+            [ JSON.stringify(userValue) ],
+            { type: 'application/json' }
+        );
 
         // 회원정보 json과 프로필 이미지 사진을 하나의 multipart/form-data로 묶어줘야 함
         const formData = new FormData();
@@ -244,14 +244,15 @@ const Join = () => {
     };
 
     // 썸네일 영역 클릭 이벤트
-    const thumbnailClickHandleer = e => {
-      document.getElementById('profile-img').click()
+    const thumbnailClickHandler = e => {
+        document.getElementById('profile-img').click();
     };
 
     // 파일 선택시 썸네일 화면에 렌더링
     const showThumbnailHandler = e => {
+
         // 첨부된 파일의 데이터를 가져오기
-        const file = document.getElementById('profile-img').files[0]
+        const file = document.getElementById('profile-img').files[0];
         // console.log(file);
 
         const reader = new FileReader();
@@ -262,6 +263,7 @@ const Join = () => {
         };
 
     };
+
 
     const {userName: un, password: pw, passwordCheck: pwc, email: em} = correct;
     useEffect(() => {
@@ -280,28 +282,30 @@ const Join = () => {
         <Container component="main" maxWidth="xs" style={{margin: "200px auto"}}>
             <form noValidate>
                 <Grid container spacing={2}>
+
                     <Grid item xs={12}>
                         <Typography component="h1" variant="h5">
                             계정 생성
                         </Typography>
                     </Grid>
 
-                  <Grid item xs={12}>
-                    <div className="thumbnail-box" onClick={thumbnailClickHandleer}>
-                      <img
-                          src={imgFile || anonymous}
-                          alt="profile"
-                      />
-                    </div>
-                    <label className='signup-img-label' htmlFor='profile-img'>프로필 이미지 추가</label>
-                    <input
-                        id='profile-img'
-                        type='file'
-                        style={{display: 'none'}}
-                        accept='image/*'
-                        onChange={showThumbnailHandler}
-                    />
-                  </Grid>
+                    <Grid item xs={12}>
+                        <div className="thumbnail-box" onClick={thumbnailClickHandler}>
+                            <img
+                                src={imgFile || anonymous}
+                                alt="profile"
+                            />
+                        </div>
+                        <label className='signup-img-label' htmlFor='profile-img'>프로필 이미지 추가</label>
+                        <input
+                            id='profile-img'
+                            type='file'
+                            style={{display: 'none'}}
+                            accept='image/*'
+                            onChange={showThumbnailHandler}
+                        />
+                    </Grid>
+
 
                     <Grid item xs={12}>
                         <TextField
